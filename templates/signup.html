@@ -1,0 +1,71 @@
+{% extends 'layouts.html' %} {% block title %} signup page {% endblock %} {% block active %}active{% endblock %} {% block content %} {% load static %}
+
+<div style="margin-top: 30px" class="container ">
+    <div class="col-lg-10 mx-auto shadow ">
+        <div class="alert alert-info text-light bg-primary text-center">
+            <h2>Create Account</h2>
+        </div>
+        <div>
+            {% for message in messages %}
+            <div class="d-flex justify-content-center ">
+                <div class="alert ml-4 alert-danger d-flex alert-dismissible fade show w-50 justify-content-center" role="alert">
+                    <h6>{{message}}</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="p-3">
+            <form action="/signup/" method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input value="{{f}}" type="text" name="fname" class="form-control" id="floatingInput" placeholder="First name" required>
+                    <label for="floatingInput">First name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input value="{{l}}" type="text" name="lname" class="form-control" id="floatingInput" placeholder="Last name" required>
+                    <label for="floatingInput">Last name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input value="{{u}}" minlength="6" type="text" name="uname" class="form-control" id="floatingInput" placeholder="Username" required>
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input value="{{m}}" type="text" name="email" class="form-control" id="floatingInput" placeholder="Email" required>
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input value="{{p}}" minlength="8" type="password" id="ip1" name="pass" class="form-control" id="floatingInput" placeholder="Enter password" required>
+                    <label for="floatingInput">Enter password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input value="{{pa}}" minlength="8" type="password" id="ip2" name="passwordagain" class="form-control" id="floatingInput" placeholder="Enter password again" required>
+                    <label for="floatingInput">Enter password again</label>
+                </div>
+                <div class="col-12">
+                    <div class="row ">
+                        <div class="col-6  ">
+                            <input class="check-input " type="checkbox" onclick="myFunctions()" value="" id="flexCheckDefault" />
+                            <label class=" check-label" for="flexCheckDefault">
+                         Show password
+                    </label>
+                        </div>
+                        <div class="col-6 text-end">
+                            <a style="text-decoration: none;" class="text-dark fp " href="{% url 'forgetpassword' %}">Forget password?</a>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Register</button>
+
+                </div>
+                <br />
+                <h4>Already have an account?
+                    <a class="btn btn-outline-primary " href="{% url 'account' %}">Log in</a></h4>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

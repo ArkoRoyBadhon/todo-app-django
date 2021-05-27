@@ -1,0 +1,41 @@
+{% block content %}
+<nav style="background-color: #e3f2fd;" class="navbar navbar-dark bg-primary navbar-expand-lg  ">
+    <div class=" container container-fluid">
+        <a class="navbar-brand" href="#">TODO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav ms-auto text-light">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item  ">
+                    <a class="nav-link active " href="{% url 'home' %}">Home</a>
+                </li>
+                {% if activeuser.role == "cr" %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'todo' %}">Add Todo</a>
+                </li>
+                {% else %} {% endif %}                
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'team' %}">Team</a>
+                </li>
+
+                <li class="nav-item dropdown  ">
+                    <button style="padding-left: 20px;padding-right:15px" type="button" class=" profile nav-link btn btn-primary   border border-light  btn-sm text-light dropdown-toggle  " data-bs-toggle="dropdown" aria-expanded="false">
+                     {{request.user.username}}  
+                    </button>
+
+                    <ul class="dropdown-menu  dropdown-menu-info" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item  " href="{% url 'profile' %}">Profile</a></li>
+                        <li><a class="dropdown-item  " href="{% url 'signout' %}">Logout</a></li>
+
+                    </ul>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}

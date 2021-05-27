@@ -1,0 +1,80 @@
+{% extends 'layouts.html' %} {% block title %} Team {% endblock %} {% block active %}active{% endblock %} {% block content %} {% load static %} {% include 'navbar.html' %}
+<!-- ======= Our Team Section ======= -->
+<div   id="team" class="team section-bg   pt-4">
+    <div class="container">
+        <div class="section-title text-center mb-4" data-aos="fade-up">
+            <h2>Our <strong>Team Members</strong></h2>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up">
+                    <div class="member-img">
+                        <img src="{% static 'img/team/likhon.jpg' %}" class="img-fluid" alt="" />
+                         
+                    </div>
+                    <div class="member-info">
+                        <h4>Md Likhon Hossain</h4>
+                        <span>Chief Executive Officer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" >
+                    <div class="member-img pb-2">
+                        <img src="{% static 'img/team/sarwar.jpg' %}" class="img-fluid" alt="" />
+                        
+                    </div>
+                    <div class="member-info mt-2">
+                        <h4>Md Sarwar Ahmed</h4>
+                        <span>Product Manager</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-img">
+                        <img src="{% static 'img/team/mafuz.jpg' %}" class="img-fluid" alt="" />
+                        
+                    </div>
+                    <div class="member-info">
+                        <h4>Md Mahfuzur Rahman</h4>
+                        <span>Frontend developer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-img">
+                        <img src="{% static 'img/team/arko.jpg' %}" class="img-fluid" alt="" />
+                        
+                    </div>
+                    <div class="member-info">
+                        <h4>Arko Roy Badhon</h4>
+                        <span>Frontend developer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-img">
+                        <img src="{% static 'img/team/mehadi.jpg' %}" class="img-fluid" alt="" />
+                        
+                    </div>
+                    <div class="member-info">
+                        <h4>Md Zahirul Islam Mehadi</h4>
+                        <span>Backend developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Our Team Section -->
+
+{% endblock %}

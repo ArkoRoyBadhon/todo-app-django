@@ -1,0 +1,76 @@
+{% extends 'layouts.html' %} {% block title %} TODO {% endblock %} {% block content %} {% include 'navbar.html' %} {% load static %}
+
+<div class="container container-fluid pt-3">
+    <form action="/search/" method="post">
+        {% csrf_token %}
+        <input required name="search" value="" class="form-control me-2 " type="search" placeholder="Type here" aria-label="Search">
+        <button class="btn btn-outline-success mt-2" type="submit">Search</button>
+    </form>
+</div>
+<div class="accordion container pt-4" id="accordionExample">
+    <button class="btn btn-danger mb-1">
+        Incoming <span class="badge bg-dark">{{incominglen}}</span>
+      </button> {% for todo in todos %} {% if todo.id in incoming %}
+    <div class="accordion-item  ">
+        <h2 class="accordion-header text-dark bg-primary" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{todo.id}}" aria-expanded="false" aria-controls="collapse{{todo.id}}">
+                {{todo.title}}
+        </button>
+        </h2>
+        <div id="collapse{{todo.id}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <p>{{todo.about}}</p>
+                <span class="badge bg-primary mb-1">Course name : {{todo.course}}</span>
+                <span class="badge bg-dark mb-1">Start time : {{todo.start_date}}({{todo.start_time}})</span>
+                <span class="badge bg-dark mb-1">End time : {{todo.end_date}}({{todo.end_time}})</span>
+                <br>
+                <div class="mt-3 mb-3 home_button">
+                    {% if todo.url1 != "" and todo.w1 != "" %}
+                    <a target="_blank" href="{{todo.url1}}" class="btn btn-success btn-sm mb-1">{{todo.w1}}</a> {% elif todo.url1 != "" and todo.w1 == "" %}
+                    <a target="_blank" href="{{todo.url1}}" class="btn btn-success btn-sm mb-1">Link</a>{% elif todo.url1 == "" and todo.w1 != "" %}
+                    <a class="btn btn-success btn-sm mb-1">{{todo.w1}}</a>{% endif %} {% if todo.url2 != "" and todo.w2 != "" %}
+                    <a target="_blank" href="{{todo.url2}}" class="btn btn-success btn-sm mb-1">{{todo.w2}}</a> {% elif todo.url2 != "" and todo.w2 == "" %}
+                    <a target="_blank" href="{{todo.url2}}" class="btn btn-success btn-sm mb-1">Link</a>{% elif todo.url2 == "" and todo.w2 != "" %}
+                    <a class="btn btn-success btn-sm mb-1">{{todo.w2}}</a>{% endif %} {% if activeuser.role == "cr" %}
+                    <a href="{% url 'edittodo' todo.id %}" class="btn btn-outline-secondary mb-1 btn-sm">Edit</a>
+                    <a class="btn btn-outline-danger mb-1 btn-sm" href="{% url 'deletetodo' todo.id %}">Delete</a> {% else %} {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %} {% endif %} {% endfor %}
+</div>
+<div class="accordion container pt-4" id="accordionExample">
+    <button class="btn btn-success mb-1">
+        Complete <span class="badge bg-dark">{{completelen}}</span>
+      </button> {% for todo in todos %} {% if todo.id not in incoming %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2{{todo.id}}" aria-expanded="false" aria-controls="collapse{{todo.id}}">
+                {{todo.title}}
+        </button>
+        </h2>
+        <div id="collapse2{{todo.id}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <p>{{todo.about}}</p>
+                <span class="badge bg-primary mb-1">Course name : {{todo.course}}</span>
+                <span class="badge bg-dark mb-1">Start time : {{todo.start_date}}({{todo.start_time}})</span>
+                <span class="badge bg-dark mb-1">End time : {{todo.end_date}}({{todo.end_time}})</span>
+                <br>
+                <div class="mt-3 mb-3 home_button">
+                    {% if todo.url1 != "" and todo.w1 != "" %}
+                    <a target="_blank" href="{{todo.url1}}" class="btn btn-success btn-sm mb-1">{{todo.w1}}</a> {% elif todo.url1 != "" and todo.w1 == "" %}
+                    <a target="_blank" href="{{todo.url1}}" class="btn btn-success btn-sm mb-1">Link</a>{% elif todo.url1 == "" and todo.w1 != "" %}
+                    <a class="btn btn-success btn-sm mb-1">{{todo.w1}}</a>{% endif %} {% if todo.url2 != "" and todo.w2 != "" %}
+                    <a target="_blank" href="{{todo.url2}}" class="btn btn-success btn-sm mb-1">{{todo.w2}}</a> {% elif todo.url2 != "" and todo.w2 == "" %}
+                    <a target="_blank" href="{{todo.url2}}" class="btn btn-success btn-sm mb-1">Link</a>{% elif todo.url2 == "" and todo.w2 != "" %}
+                    <a class="btn btn-success btn-sm mb-1">{{todo.w2}}</a>{% endif %} {% if activeuser.role == "cr" %}
+                    <a href="{% url 'edittodo' todo.id %}" class="btn btn-outline-secondary mb-1 btn-sm">Edit</a>
+                    <a class="btn btn-outline-danger mb-1 btn-sm" href="{% url 'deletetodo' todo.id %}">Delete</a> {% else %} {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %} {% endif %} {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'layouts.html' %} {% block title %} Edit Todo {% endblock %} {% block active %}active{% endblock %} {% block content %} {% load static %} {% include 'navbar.html' %}
+<div class="container pt-0">
+    <div class=" p-4 mt-4">
+        <div class="col-lg-10 mx-auto shadow">
+            <div class="alert alert-info text-light bg-primary text-center">
+                <h2>Edit TODO</h2>
+            </div>
+            <div class="p-4">
+                <form action="/updatetodo/{{editform.id}}/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.title}}" type="text" name="todotitle" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Title</label>
+                    </div>
+                    {% if editform.about != "" %}
+                    <div class="form-floating">
+                        <textarea class="form-control" name="about" placeholder="Leave a comment here" id="floatingInput" style="height: 100px">{{editform.about}}</textarea>
+                        <label for="floatingInput">About</label>
+                    </div>
+                    {% else %}
+                    <div class="form-floating">
+                        <textarea value="" class="form-control" name="about" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">About</label>
+                    </div>
+                    {% endif %} <br>
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.course}}" type="text" class="form-control" name="course" id="floatingInput" required placeholder="Title here" />
+                        <label for="floatingInput">Course</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input value={{editform.s_d}} name="sdate" type="date" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Start Date</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input value={{editform.s_t}} name="stime" type="time" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Start time</label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input value={{editform.e_d}} name="edate" type="date" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">End Date</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input value={{editform.e_t}} name="etime" type="time" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">End time</label>
+                            </div>
+                        </div>
+                    </div>
+                    {% if editform.w1 != "" %}
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.w1}}" type="text" name="w1" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Website name</label>
+                    </div>{% else %}
+                    <div class="form-floating mb-3">
+                        <input value="" type="text" name="w1" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Website name</label>
+                    </div>
+                    {% endif %} {% if editform.url1 != "" %}
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.url1}}" name="url1" type="url" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Url1</label>
+                    </div>
+                    {% else %}
+                    <div class="form-floating mb-3">
+                        <input value="" name="url1" type="url" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Url1</label>
+                    </div>
+                    {% endif %} {% if editform.w2 != "" %}
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.w2}}" type="text" name="w2" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Website name</label>
+                    </div>{% else %}
+                    <div class="form-floating mb-3">
+                        <input value="" type="text" name="w2" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Website name</label>
+                    </div>
+                    {% endif %} {% if editform.url2 != "" %}
+                    <div class="form-floating mb-3">
+                        <input value="{{editform.url2}}" name="url2" type="url" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Url1</label>
+                    </div>
+                    {% else %}
+                    <div class="form-floating mb-3">
+                        <input value="" name="url2" type="url" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Url1</label>
+                    </div>
+                    {% endif %}
+                    <br />
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <input type="submit" value="Save TODO" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

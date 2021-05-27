@@ -1,0 +1,76 @@
+{% extends 'layouts.html' %} {% block title %} Add Todo {% endblock %} {% block active %}active{% endblock %} {% block content %} {% load static %} {% include 'navbar.html' %}
+
+<div class="container pt-4">
+    <div class="p-4 mt-4">
+        <div class="col-lg-10 mx-auto shadow">
+            <div class="alert alert-info text-light bg-primary text-center">
+                <h2>Add new TODO</h2>
+            </div>
+            <div class="p-4">
+                <form action="/add-todo/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="todotitle" id="floatingInput" required placeholder="Title here" />
+                        <label for="floatingInput">Title</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea type="text" class="form-control" name="about" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">About</label>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="course" id="floatingInput" required placeholder="Title here" />
+                        <label for="floatingInput">Course</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input name="sdate" type="date" required class="form-control" id="floatingInput" />
+                                <label for="floatingInput">Start Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input name="stime" type="time" required class="form-control" id="floatingInput" />
+                                <label for="floatingInput">Start time</label>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input name="edate" type="date" required class="form-control" id="floatingInput" />
+                                <label for="floatingInput">End Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input name="etime" type="time" required class="form-control" id="floatingInput" />
+                                <label for="floatingInput">End time</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="w1" id="floatingInput"  placeholder="Title here" />
+                        <label for="floatingInput">Website name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="url1" placeholder="Give Url" type="url" class="form-control" id="floatingInput" />
+                        <label for="floatingInput">Url1</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="w2" id="floatingInput"  placeholder="Title here" />
+                        <label for="floatingInput">Website name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="url2" placeholder="Give Url2" type="url" class="form-control" id="floatingInput" />
+                        <label for="floatingInput">Url2</label>
+                    </div>
+                    <br />
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <input type="submit" value="ADD" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

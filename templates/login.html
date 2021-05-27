@@ -1,0 +1,57 @@
+{% extends 'layouts.html' %} {% block title %} login page {% endblock %} {% block active %}active{% endblock %} {% block content %} {% load static %}
+
+<div class="container p-4">
+    <div class="col-lg-6 mx-auto shadow p-4 mt-4 mb-4">
+        <div class="alert alert-info bg-primary text-light text-center">
+            <h2>Login Here</h2>
+        </div>
+        <div>
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <h6>{{message}}</h6>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        <form action="/account/" method="post">
+            {% csrf_token %}
+
+            <div class="form-floating mb-3">
+                <input value="{{u}}" type="text" name="uname" class="form-control" id="floatingInput" placeholder="Username" required/>
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input value="{{p}}" type="password" name="pass" class="form-control" id="myInput" placeholder="Password" required/>
+                <label for="floatingInput">Password</label>
+            </div>
+            <div class=" overflow-hidden">
+                <div class="row">
+                    <div class="col-6">
+                        <input class="check-input" type="checkbox" onclick="myFunction()" value="" id="flexCheckDefault" />
+                        <label class="check-label" for="flexCheckDefault">
+              Show password
+            </label>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a style="text-decoration: none" class="text-dark fp" href="{% url 'forgetpassword' %}">Forget password?</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit">login</button>
+      </div>
+
+      <br />
+      <h4>
+        Don't have an account?
+        <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
+                        </h4>
+        </form>
+        </div>
+        </div>
+
+        {%endblock%}
